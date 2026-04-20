@@ -1,0 +1,27 @@
+{
+	"name": "api-cleanarch-ddd-rocketseat",
+	"version": "1.0.0",
+	"description": "- Domain Experts     - Conversas - Linguagem Ubíqua (Linguagem de Domínio)",
+	"main": "index.js",
+	"scripts": {
+		"test": "vitest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/marloikhodi/api-cleanarch-ddd-rocketseat.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"bugs": {
+		"url": "https://github.com/marloikhodi/api-cleanarch-ddd-rocketseat/issues"
+	},
+	"homepage": "https://github.com/marloikhodi/api-cleanarch-ddd-rocketseat#readme",
+	"devDependencies": {
+		"@biomejs/biome": "2.4.12",
+		"@types/node": "^25.6.0",
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.4"
+	}
+}
