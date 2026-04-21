@@ -1,11 +1,17 @@
 import { randomUUID } from 'node:crypto'
 
-export class Answer {
-	public content: string
-	public id: string
+type AnswerProps = { content: string; authorId: string; questionId: string }
 
-	constructor(content: string, id?: string) {
-		this.content = content
+export class Answer {
+	public id: string
+	public content: string
+	public authorId: string
+	public questionId: string
+
+	constructor(props: AnswerProps, id?: string) {
+		this.content = props.content
+		this.authorId = props.authorId
+		this.questionId = props.questionId
 		this.id = id ?? randomUUID()
 	}
 }
