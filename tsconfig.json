@@ -9,11 +9,18 @@
 		// See also https://aka.ms/tsconfig/module
 		"module": "nodenext",
 		"target": "es2020",
-		"types": ["node"],
+		"types": ["node", "vitest/globals"],
 		// For nodejs:
 		// "lib": ["esnext"],
 		// "types": ["node"],
 		// and npm install -D @types/node
+
+		"ignoreDeprecations": "6.0",
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"],
+			"@core/*": ["src/core/*"]
+		},
 
 		// Other Outputs
 		"sourceMap": true,
