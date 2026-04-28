@@ -4,7 +4,14 @@
 	"description": "- Domain Experts     - Conversas - Linguagem Ubíqua (Linguagem de Domínio)",
 	"main": "index.js",
 	"scripts": {
-		"test": "vitest"
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"dev": "tsx watch src/server.ts",
+		"start": "node build/server.cjs",
+		"build": "tsup src --out-dir build",
+		"check": "npx @biomejs/biome check --write .",
+		"docker:up": "docker compose up -d",
+		"docker:down": "docker compose stop"
 	},
 	"repository": {
 		"type": "git",
