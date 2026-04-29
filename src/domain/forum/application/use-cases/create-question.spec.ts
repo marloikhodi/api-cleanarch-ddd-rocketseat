@@ -1,22 +1,24 @@
 import { randomUUID } from 'node:crypto'
-import type { Question } from '../../enterprise/entities/question.js'
-import type { QuestionsRepository } from '../repositories/questions-repository.js'
+import { InMemoryQuestionRepository } from '@test/repositories/in-memory-question-repository.js'
 import { CreateQuestionUseCase } from './create-question.js'
 
-const fakeQuestionsRepository: QuestionsRepository = {
-	create: async (_question: Question) => {
-		return
-	},
-}
+let inMemoryQuestionsRepository: InMemoryQuestionRepository
+let sut: CreateQuestionUseCase
 
-test('create a question', async () => {
-	const createQuestion = new CreateQuestionUseCase(fakeQuestionsRepository)
-
-	const { question } = await createQuestion.execute({
-		authorId: randomUUID(),
-		content: 'New Question',
-		title: 'New Question',
+describe('Create Question', () => {
+	beforeEach(() => {
+		inMemoryQuestionsRepository = new InMemoryQuestionRepository()
+		sut = new CreateQuestionUseCase(inMemoryQuestionsRepository)
 	})
 
-	expect(question.id).toBeTruthy()
+	it('should be able to create a question', async () => {
+		const { question } = await sut.execute({
+			authorId: randomUUID(),
+			content: 'New Question',
+			title: 'New Question',
+		})
+
+		expect(question.id).toBeTruthy()
+		expect(inMemoryQuestionsRepository.items[0]?.id).toEqual(question.id)
+	})
 })
