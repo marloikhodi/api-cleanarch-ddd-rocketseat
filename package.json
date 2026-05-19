@@ -27,6 +27,7 @@
 	"homepage": "https://github.com/marloikhodi/api-cleanarch-ddd-rocketseat#readme",
 	"devDependencies": {
 		"@biomejs/biome": "2.4.12",
+		"@faker-js/faker": "^10.4.0",
 		"@types/node": "^25.6.0",
 		"typescript": "^6.0.3",
 		"vitest": "^4.1.4"
