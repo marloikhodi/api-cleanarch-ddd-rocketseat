@@ -2,7 +2,7 @@ import { Entity } from '@/core/entities/entity.js'
 import type { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
 import type { Optional } from '@/core/types/optional.js'
 
-type AnswerProps = {
+export type AnswerProps = {
 	authorId: UniqueEntityId
 	questionId: UniqueEntityId
 	content: string
@@ -45,10 +45,7 @@ export class Answer extends Entity<AnswerProps> {
 		this.touch()
 	}
 
-	static create(
-		props: Optional<AnswerProps, 'createdAt'>,
-		id?: UniqueEntityId,
-	) {
+	static create(props: Optional<AnswerProps, 'createdAt'>, id?: UniqueEntityId) {
 		const answer = new Answer(
 			{
 				...props,

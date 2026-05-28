@@ -1,14 +1,14 @@
 import { makeQuestion } from '@test/factories/make-question.js'
-import { InMemoryQuestionRepository } from '@test/repositories/in-memory-question-repository.js'
+import { InMemoryQuestionsRepository } from '@test/repositories/in-memory-questions-repository.js'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
-import { DeleteQuestionUseCase } from './delete-questions-use-case.js'
+import { DeleteQuestionUseCase } from './delete-questions.js'
 
-let inMemoryQuestionsRepository: InMemoryQuestionRepository
+let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let sut: DeleteQuestionUseCase
 
 describe('Delete Question', () => {
 	beforeEach(() => {
-		inMemoryQuestionsRepository = new InMemoryQuestionRepository()
+		inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
 		sut = new DeleteQuestionUseCase(inMemoryQuestionsRepository)
 	})
 

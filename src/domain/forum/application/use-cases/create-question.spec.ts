@@ -1,13 +1,13 @@
 import { randomUUID } from 'node:crypto'
-import { InMemoryQuestionRepository } from '@test/repositories/in-memory-question-repository.js'
+import { InMemoryQuestionsRepository } from '@test/repositories/in-memory-questions-repository.js'
 import { CreateQuestionUseCase } from './create-question.js'
 
-let inMemoryQuestionsRepository: InMemoryQuestionRepository
+let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let sut: CreateQuestionUseCase
 
 describe('Create Question', () => {
 	beforeEach(() => {
-		inMemoryQuestionsRepository = new InMemoryQuestionRepository()
+		inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
 		sut = new CreateQuestionUseCase(inMemoryQuestionsRepository)
 	})
 
