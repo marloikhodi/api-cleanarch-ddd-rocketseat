@@ -1,20 +1,18 @@
 import type { Question } from '../../enterprise/entities/question.js'
 import type { QuestionsRepository } from '../repositories/questions-repository.js'
 
-type GetQuestionBySlugUseCaseRequest = {
+interface GetQuestionBySlugUseCaseRequest {
 	slug: string
 }
 
-type GetQuestionBySlugUseCaseResponse = {
+interface GetQuestionBySlugUseCaseResponse {
 	question: Question
 }
 
 export class GetQuestionBySlugUseCase {
 	constructor(private questionRepository: QuestionsRepository) {}
 
-	async execute({
-		slug,
-	}: GetQuestionBySlugUseCaseRequest): Promise<GetQuestionBySlugUseCaseResponse> {
+	async execute({ slug }: GetQuestionBySlugUseCaseRequest): Promise<GetQuestionBySlugUseCaseResponse> {
 		const question = await this.questionRepository.findBySlug(slug)
 
 		if (!question) {

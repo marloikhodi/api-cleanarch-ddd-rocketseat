@@ -86,4 +86,8 @@ export class Question extends Entity<QuestionProps> {
 
 		return question
 	}
+
+	static delete() {
+		null
+	}
 }
