@@ -8,6 +8,18 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 		this.items.push(answer)
 	}
 
+	async save(answer: Answer) {
+		const itemIndex = this.items.findIndex((item) => item.id === answer.id)
+
+		this.items[itemIndex] = answer
+	}
+
+	async delete(answer: Answer) {
+		const itemIndex = this.items.findIndex((item) => item.id === answer.id)
+
+		this.items.splice(itemIndex, 1)
+	}
+
 	async findById(id: string) {
 		const answer = this.items.find((item) => item.id.toString() === id)
 
@@ -16,11 +28,5 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 		}
 
 		return answer
-	}
-
-	async delete(answer: Answer) {
-		const itemIndex = this.items.findIndex((item) => item.id === answer.id)
-
-		this.items.splice(itemIndex, 1)
 	}
 }
