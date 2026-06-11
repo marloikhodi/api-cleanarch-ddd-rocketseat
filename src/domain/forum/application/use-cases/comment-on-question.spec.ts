@@ -13,6 +13,7 @@ describe('Comment On Question', () => {
 		inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
 		sut = new CommentOnQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionCommentsRepository)
 	})
+
 	it('should be able to comment on question', async () => {
 		const question = makeQuestion()
 

@@ -13,6 +13,7 @@ describe('Comment On Answer', () => {
 		inMemoryAnswersRepository = new InMemoryAnswersRepository()
 		sut = new CommentOnAnswerUseCase(inMemoryAnswersRepository, inMemoryAnswerCommentsRepository)
 	})
+
 	it('should be able to comment on answer', async () => {
 		const answer = makeAnswer()
 
