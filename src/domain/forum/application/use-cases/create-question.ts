@@ -2,6 +2,7 @@ import { type Either, right } from '@/core/either.js'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
 import { Question } from '../../enterprise/entities/question.js'
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment.js'
+import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list.js'
 import type { QuestionsRepository } from '../repositories/questions-repository.js'
 
 interface CreateQuestionUseCaseRequest {
@@ -35,7 +36,7 @@ export class CreateQuestionUseCase {
 			})
 		})
 
-		question.attachments = questionAttachments
+		question.attachments = new QuestionAttachmentList(questionAttachments)
 
 		await this.questionRepository.create(question)
 
