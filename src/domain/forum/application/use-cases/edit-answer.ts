@@ -1,5 +1,9 @@
 import { type Either, left, right } from '@/core/either.js'
+import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
 import type { Answer } from '../../enterprise/entities/answer.js'
+import { AnswerAttachment } from '../../enterprise/entities/answer-attachment.js'
+import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachment-list.js'
+import type { AnswerAttachmentsRepository } from '../repositories/answer-attachments-repository.js'
 import type { AnswersRepository } from '../repositories/answers-repository.js'
 import { NotAllowedError } from './errors/not-allowed-error.js'
 import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
@@ -8,14 +12,23 @@ interface EditAnswerUseCaseRequest {
 	authorId: string
 	answerId: string
 	content: string
+	attachmentsIds: string[]
 }
 
 type EditAnswerUseCaseResponse = Either<ResourceNotFoundError | NotAllowedError, { answer: Answer }>
 
 export class EditAnswerUseCase {
-	constructor(private answerRepository: AnswersRepository) {}
+	constructor(
+		private answerRepository: AnswersRepository,
+		private answerAttachmentsRepository: AnswerAttachmentsRepository,
+	) {}
 
-	async execute({ authorId, answerId, content }: EditAnswerUseCaseRequest): Promise<EditAnswerUseCaseResponse> {
+	async execute({
+		authorId,
+		answerId,
+		content,
+		attachmentsIds,
+	}: EditAnswerUseCaseRequest): Promise<EditAnswerUseCaseResponse> {
 		const answer = await this.answerRepository.findById(answerId)
 
 		if (!answer) {
@@ -26,7 +39,21 @@ export class EditAnswerUseCase {
 			return left(new NotAllowedError())
 		}
 
+		const currentAnswerAttachments = await this.answerAttachmentsRepository.findManyByAnswerId(answerId)
+
+		const answerAttachmentList = new AnswerAttachmentList(currentAnswerAttachments)
+
+		const answerAttachments = attachmentsIds.map((attachmentId) => {
+			return AnswerAttachment.create({
+				attachmentId: new UniqueEntityId(attachmentId),
+				answerId: answer.id,
+			})
+		})
+
+		answerAttachmentList.update(answerAttachments)
+
 		answer.content = content
+		answer.attachments = answerAttachmentList
 
 		await this.answerRepository.save(answer)
 
