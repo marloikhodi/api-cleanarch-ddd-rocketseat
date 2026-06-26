@@ -5,8 +5,8 @@ import { InMemoryAnswersRepository } from '@test/repositories/in-memory-answers-
 import { InMemoryQuestionAttachmentsRepository } from '@test/repositories/in-memory-question-attachment-repository.js'
 import { InMemoryQuestionsRepository } from '@test/repositories/in-memory-questions-repository.js'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
+import { NotAllowedError } from '../../../../core/errors/errors/not-allowed-error.js'
 import { ChooseQuestionBestAnswerUseCase } from './choose-question-best-answer.js'
-import { NotAllowedError } from './errors/not-allowed-error.js'
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
