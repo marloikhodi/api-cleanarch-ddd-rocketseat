@@ -1,3 +1,4 @@
+import { NotAllowedError } from '@core/errors/errors/not-allowed-error.js'
 import { makeAnswer } from '@test/factories/make-answer.js'
 import { makeQuestion } from '@test/factories/make-question.js'
 import { InMemoryAnswerAttachmentsRepository } from '@test/repositories/in-memory-answer-attachment-repository.js'
@@ -5,7 +6,6 @@ import { InMemoryAnswersRepository } from '@test/repositories/in-memory-answers-
 import { InMemoryQuestionAttachmentsRepository } from '@test/repositories/in-memory-question-attachment-repository.js'
 import { InMemoryQuestionsRepository } from '@test/repositories/in-memory-questions-repository.js'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
-import { NotAllowedError } from '../../../../core/errors/errors/not-allowed-error.js'
 import { ChooseQuestionBestAnswerUseCase } from './choose-question-best-answer.js'
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
