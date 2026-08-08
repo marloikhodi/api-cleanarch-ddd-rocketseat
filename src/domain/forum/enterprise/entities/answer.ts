@@ -1,5 +1,4 @@
 import { AggregateRoot } from '@/core/entities/aggregate-root.js'
-import { Entity } from '@/core/entities/entity.js'
 import type { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
 import type { Optional } from '@/core/types/optional.js'
 import { AnswerCreatedEvent } from '../events/answer-created-event.js'

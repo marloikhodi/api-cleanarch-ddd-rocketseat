@@ -13,6 +13,7 @@ export abstract class Entity<Props> {
 		this._id = id ?? new UniqueEntityId()
 	}
 
+	// biome-ignore lint/suspicious/noExplicitAny: <Base entity class comparison>
 	public equals(entity: Entity<any>) {
 		if (entity === this) {
 			return true
